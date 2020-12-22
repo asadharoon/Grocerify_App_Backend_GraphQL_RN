@@ -1,0 +1,9 @@
+{
+    "Admin":{
+        "jwtPrivateKey": "jwtPrivateKey-Admin_Grocer"
+    },
+    "User":{
+        "jwtPrivateKey": "jwtPrivateKey-User_Grocer"
+    }
+ 
+}

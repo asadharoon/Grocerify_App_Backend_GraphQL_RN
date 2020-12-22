@@ -5,20 +5,21 @@ const userSchema = new mongoose.Schema(
   {
     Name: {
       type: String,
-      //required: true,
+      required: true,
     },
     Email: {
       type: String,
-      // required: true,
-      //index: true,
+      required: true,
+      index: true,
     },
     Image: {
       type: String,
     },
     Password: {
       type: String,
-      //required: true,
+      required: true,
     },
+    Cart: { type: Array, default: [] },
     Balance: {
       type: Number,
     },

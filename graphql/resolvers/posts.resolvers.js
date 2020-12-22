@@ -1,12 +1,12 @@
 // resolvers functions..
 const posts = require("../../data/posts");
-const { authCheck } = require("../../middleware/userAuth");
+const { UserAuthCheck } = require("../../middleware/userAuth");
 const allPosts = () => posts;
 
 const resolvers = {
   Query: {
-    totalPosts: (parent, args, { req, res }) => {
-      authCheck(req, res);
+    totalPosts: async (parent, args, { req, res }) => {
+      UserAuthCheck(req, res);
       return posts.length;
     },
     allPosts,

@@ -1,23 +1,23 @@
+const { UserAuthCheck } = require("../../middleware/userAuth");
+const UserModel = require("../../models/User.model");
 const User = require("../../models/User.model");
 
 const resolvers = {
   Query: {},
   Mutation: {
-    createUser: async (_, args) => {
-      let user = await User.findOne({ email: args.email });
-      console.log("in creatuser", args, user ? user : "asad");
-
-      let { email, name, password } = args.user;
-
-      return user
-        ? user
-        : new User({
-            Email: email,
-            Password: password,
-            Name: name,
-            Image: "https://via.placeholder.com/200x200.png?text=Profile",
-            Balance: 0,
-          }).save();
+    getUserfromDB: async (_, args, { req, res }) => {
+      console.log("in getusers");
+      return await UserAuthCheck(req, res)
+        .then(async () => {
+          console.log("in then");
+          let user = await UserModel.find({ ...args.user });
+          console.log(user);
+          return user;
+        })
+        .catch((err) => {
+          console.log("in error");
+          throw new Error(err.message);
+        });
     },
   },
 };
